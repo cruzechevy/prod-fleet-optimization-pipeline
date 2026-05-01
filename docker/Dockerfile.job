@@ -1,0 +1,23 @@
+FROM python:3.10
+
+WORKDIR /app
+
+# Install default Java (works across Debian versions)
+RUN apt-get update && apt-get install -y \
+    default-jdk \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME dynamically (important)
+ENV JAVA_HOME=/usr/lib/jvm/default-java
+ENV PATH=$JAVA_HOME/bin:$PATH
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY scripts/ /app/scripts
+COPY config/ /app/config
+
+
+CMD ["python", "scripts/fleet_assignment_job.py"]

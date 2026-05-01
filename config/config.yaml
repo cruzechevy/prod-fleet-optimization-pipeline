@@ -1,0 +1,12 @@
+paths:
+  data_path: /app/data
+  trips: silver/trips
+  drivers: bronze/drivers
+  trucks: bronze/trucks
+  routes: bronze/routes
+  output: silver/final_assignments
+
+runtime:
+  rest_hours: 8
+  top_k_drivers: 5
+  top_k_trucks: 3
